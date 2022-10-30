@@ -7,12 +7,10 @@ import java.util.Scanner;
 public class TP1Java {
 
 	private static String[] aluno;
-//	private static int[] idades;
 	private static float[] notaav1;
 	private static float[] notaav2;
-//	private static float[] descontos;
 
-	private static final int TAMANHO = 2; 		
+	private static final int TAMANHO = 10; 		
 
 	private static void imprimir() {		
 		for (int i = 0; i < TAMANHO; i++) {
@@ -35,22 +33,26 @@ public class TP1Java {
 	}
 	
 	private static float calcularMediaFinal(int indice){
-		return notaav1[indice] + notaav2[indice];
+		return (notaav1[indice] + notaav2[indice]) /2;
 	}
 	
-	private static String obterSituacao(float sl){		
-		if(sl >= 100000) {
-			return "Rico";
-		}		
-		return "Pobre";
+	private static String obterSituacao(float mf){		
+		if(mf <= 4) {
+			return "Reprovado";
+		}
+		else if(mf >= 4 && mf <= 7 ) {
+			return "Prova Final";
+		}
+		
+		else if(mf >= 7); {
+			return "Aprovado";
 	}
-
+}
+	
 	public static void main(String[] args) {
-		nomes = new String[TAMANHO];
-		idades = new int[TAMANHO];
-		salarios = new float[TAMANHO];
-		bonus = new float[TAMANHO];
-		descontos = new float[TAMANHO];
+		aluno = new String[TAMANHO];
+		notaav1 = new float[TAMANHO];
+		notaav2 = new float[TAMANHO];
 		
 		Scanner in = new Scanner(System.in);
 		
@@ -58,48 +60,42 @@ public class TP1Java {
 		int pos = 0;
 
 		do {
-			System.out.println("[1] Cadastrar");
-			System.out.println("[2] Consultar um");
-			System.out.println("[3] Consultar todos");
+			System.out.println("[1] Lancar Notas");
+			System.out.println("[2] Consultar Aluno");
+			System.out.println("[3] Consultar Todos");
 			System.out.println("[4] Sair");
 			
-			System.out.print("Informe a op��o desejada: ");						
+			System.out.print("Informe a opcao desejada: ");						
 			opcao = in.next();
 			
 			switch (opcao) {
 			case "1":
 				if(pos < TAMANHO) {
-					System.out.print("Informe o seu nome: ");	
-					nomes[pos] = in.next();
-	
-					System.out.print("Informe a sua idade: ");	
-					idades[pos] = in.nextInt();
-	
-					System.out.print("Informe o seu sal�rio: ");	
-					salarios[pos] = in.nextFloat();
+					System.out.print("Digite o nome do aluno: ");	
+					aluno[pos] = in.next();
+		
+					System.out.print("Nota da Prova 1: ");	
+					notaav1[pos] = in.nextFloat();
 					
-					System.out.print("Informe o seu b�nus: ");	
-					bonus[pos] = in.nextFloat();
+					System.out.print("Nota da Prova 2: ");	
+					notaav2[pos] = in.nextFloat();
 
-					System.out.print("Informe o seu desconto: ");	
-					descontos[pos] = in.nextFloat();
-					
 					imprimir(pos);
 
 					pos++;
 				} else {
-					System.out.println("Imposs�vel realizar um novo cadastramento!");
+					System.out.println("Limite de cadastros atingido!");
 				}
 				break;
 
 			case "2":
-				System.out.print("Informe o funcion�rio para impress�o: ");						
+				System.out.print("Digite o código do aluno para pesquisa individual: ");						
 				int id = in.nextInt();
 
 				if(id >= 0 && id < pos) {
 					imprimir(id);
 				} else {
-					System.out.println("O �ndice ["+id+"] � inv�lido!!!");
+					System.out.println("O índice ["+id+"] é inválido!");
 				}
 				break;
 
@@ -108,16 +104,16 @@ public class TP1Java {
 				break;
 
 			case "4":
-				System.out.println("Sa�da");
+				System.out.println("Saída");
 				break;
 
 			default:
-				System.out.println("A op��o ["+opcao+"] inv�lida");
+				System.out.println("A opção ["+opcao+"] é inválida");
 				break;
 			}
 		} while (!"4".equalsIgnoreCase(opcao));
 				
-		System.out.println("Processamento finalizado!!!");
+		System.out.println("Processamento finalizado!");
 		
 		in.close();
 	}
