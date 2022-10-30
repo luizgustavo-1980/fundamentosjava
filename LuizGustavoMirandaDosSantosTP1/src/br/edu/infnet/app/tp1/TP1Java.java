@@ -10,7 +10,7 @@ public class TP1Java {
 	private static float[] notaav1;
 	private static float[] notaav2;
 
-	private static final int TAMANHO = 10; 		
+	private static final int TAMANHO = 100; 		
 
 	private static void imprimir() {		
 		for (int i = 0; i < TAMANHO; i++) {
@@ -23,11 +23,11 @@ public class TP1Java {
 	private static void imprimir(int indice) {
 		float mediaFinal = calcularMediaFinal(indice);
 		
-		System.out.println("<"+indice+"> " + 
-							aluno[indice] + " * " + 
-							notaav1[indice] + " * " + 
-							notaav2[indice] + " * " + 
-							mediaFinal + " * " +
+		System.out.println("Código: <"+indice+">"+" | Nome: " +
+							aluno[indice] + " | Nota 1: " +
+							notaav1[indice] + " | Nota 2: " + 
+							notaav2[indice] + " | Média: " + 
+							mediaFinal + " | Situação: " +
 							obterSituacao(mediaFinal)
 							);
 	}
@@ -40,15 +40,13 @@ public class TP1Java {
 		if(mf <= 4) {
 			return "Reprovado";
 		}
-		else if(mf >= 4 && mf <= 7 ) {
+		else if(mf >= 4 && mf < 7 ) {
 			return "Prova Final";
 		}
-		
 		else if(mf >= 7); {
 			return "Aprovado";
 	}
 }
-	
 	public static void main(String[] args) {
 		aluno = new String[TAMANHO];
 		notaav1 = new float[TAMANHO];
@@ -60,19 +58,22 @@ public class TP1Java {
 		int pos = 0;
 
 		do {
-			System.out.println("[1] Lancar Notas");
-			System.out.println("[2] Consultar Aluno");
-			System.out.println("[3] Consultar Todos");
+			System.out.println("[1] Cadastrar Notas de Aluno");
+			System.out.println("[2] Consultar Boletim de Aluno");
+			System.out.println("[3] Consultar Notas de Todos Alunos");
 			System.out.println("[4] Sair");
-			
-			System.out.print("Informe a opcao desejada: ");						
+
+			System.out.print("Informe a opção desejada: ");	
 			opcao = in.next();
+
 			
 			switch (opcao) {
 			case "1":
 				if(pos < TAMANHO) {
 					System.out.print("Digite o nome do aluno: ");	
-					aluno[pos] = in.next();
+//					aluno[pos] = in.next();
+					aluno[pos] = in.nextLine();
+					aluno[pos] = in.nextLine();					
 		
 					System.out.print("Nota da Prova 1: ");	
 					notaav1[pos] = in.nextFloat();
@@ -84,18 +85,18 @@ public class TP1Java {
 
 					pos++;
 				} else {
-					System.out.println("Limite de cadastros atingido!");
+					System.out.println("Limite de 100 cadastros atingido!");
 				}
 				break;
 
 			case "2":
-				System.out.print("Digite o cÃ³digo do aluno para pesquisa individual: ");						
+				System.out.print("Digite o código do aluno para pesquisa individual: ");						
 				int id = in.nextInt();
 
 				if(id >= 0 && id < pos) {
 					imprimir(id);
 				} else {
-					System.out.println("O Ã­ndice ["+id+"] Ã© invÃ¡lido!");
+					System.out.println("O Código de aluno: ["+id+"] é inválido ou inexistente!");
 				}
 				break;
 
@@ -104,19 +105,22 @@ public class TP1Java {
 				break;
 
 			case "4":
-				System.out.println("SaÃ­da");
+				System.out.println("Processamento finalizado");
 				break;
 
 			default:
-				System.out.println("A opÃ§Ã£o ["+opcao+"] Ã© invÃ¡lida");
+				System.out.println("A opção ["+opcao+"] é inválida. Digite umas das opções [1], [2], [3] ou [4]");
 				break;
 			}
 		} while (!"4".equalsIgnoreCase(opcao));
 				
-		System.out.println("Processamento finalizado!");
+		System.out.println("Obrigado por utilizar nosso sistema!");
 		
 		in.close();
 	}
 	
-	
 }
+//Luiz Gustavo Miranda dos Santos
+//Professor: Elberth
+//Fundamentos Java
+//Data: Outubro/2022
